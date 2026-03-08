@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/PrSentryAction/PrSentryAction.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/PrSentryAction.Tests/PrSentryAction.Tests.csproj" />
+  </Folder>
+</Solution>

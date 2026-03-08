@@ -1,0 +1,17 @@
+## .NET build artifacts
+bin/
+obj/
+publish/
+
+## Visual Studio / Rider
+.vs/
+.idea/
+*.user
+
+## NuGet
+*.nupkg
+.nuget/
+
+## OS
+.DS_Store
+Thumbs.db

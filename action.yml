@@ -1,0 +1,44 @@
+name: 'PR Sentry'
+description: >
+  Analyzes a .NET solution's project dependency graph and enforces Clean Architecture
+  rules. Posts a Markdown-formatted violation report as a Pull Request comment.
+author: 'husseinbbassam'
+
+branding:
+  icon: 'shield'
+  color: 'purple'
+
+inputs:
+  solution-path:
+    description: >
+      Path to the .sln, .slnx, or root .csproj file to analyze.
+      Relative paths are resolved from the repository root (GITHUB_WORKSPACE).
+    required: true
+
+  strict:
+    description: >
+      When set to "true", the action exits with a non-zero code if any architectural
+      violations are found, causing the workflow step to fail.
+    required: false
+    default: 'false'
+
+  github-token:
+    description: >
+      GitHub token used to post the violation report as a Pull Request comment.
+      Defaults to the automatically-provided GITHUB_TOKEN secret.
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  summary:
+    description: >
+      A Markdown-formatted summary of all architectural violations found (or a
+      success message if none were found).
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    INPUT_SOLUTION_PATH: ${{ inputs.solution-path }}
+    INPUT_STRICT: ${{ inputs.strict }}
+    GITHUB_TOKEN: ${{ inputs.github-token }}
